@@ -1,0 +1,20 @@
+{
+  "name": "cientifico-app",
+  "version": "1.0.0",
+  "description": "spa de rick and morty \"calderon\"",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "webpack serve --mode development",
+    "dev": "webpack --mode development"
+  },
+  "author": "calderon, el unico",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.28.3",
+    "babel-loader": "^10.0.0",
+    "html-webpack-plugin": "^5.6.4",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
+  }
+}
