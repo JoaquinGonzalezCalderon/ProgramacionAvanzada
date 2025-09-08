@@ -1,55 +1,49 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require('path'); // para manejar las rutas de los archivos
+const HtmlWebpackPlugin = require('html-webpack-plugin'); // para generar el archivo html
 
 module.exports = {
-    entry: './index.js',
+    entry: './index.js', // punto de entrada de nuestro proyecto
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'main.js',
-        publicPath: '/',
+        path: path.resolve(__dirname, 'dist'), // directorio de salida de nuestro proyecto
+        filename: 'main.js', // nombre del archivo de salida
+        publicPath: '/', // ruta de nuestro proyecto
         clean: true,
     },
     resolve: {
-        extensions: ['.js'
-        ],
+        extensions: ['.js'], // extensiones de los archivos que vamos a usar
     },
     module: {
         rules: [
             {
-                test: /\.js$/,
-                exclude: /node_modules/,
+                test: /\.js$/, // test para los archivos js
+                exclude: /node_modules/, // excluimos la carpeta node_modules
                 use: {
-                    loader: 'babel-loader',
+                    loader: 'babel-loader', // loader para los archivos js
                     options: {
-                        presets: ['@babel/preset-env'
-                        ]
+                        presets: ['@babel/preset-env'] // presets para los archivos js
                     }
                 }
+            },
+            {
+                test: /\.css$/, // test para los archivos css
+                use: ['style-loader', 'css-loader'] // loaders para los archivos css
             }
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
-            inject: true,
-            template: './public/index.html',
-            filename: './index.html',
+            inject: true, // inject para los archivos html
+            template: './public/index.html', // template para los archivos html
+            filename: './index.html', // nombre del archivo de salida
         }),
-        new CopyWebpackPlugin({
-            patterns: [
-                {
-                    from: './src/styles/styles.css', to: 'styles.css'
-                }
-            ],
-        })
     ],
     devServer: {
         static: {
-            directory: path.join(__dirname, 'dist'),
+            directory: path.join(__dirname, 'dist'), // directorio de salida de nuestro proyecto
         },
-        compress: true,
-        port: 3000,
-        open: true,
-        historyApiFallback: true,
+        compress: true, // compresión de los archivos
+        port: 3000, // puerto de nuestro proyecto
+        open: true, // abrir el navegador
+        historyApiFallback: true, // fallback para las rutas
     }
 }
